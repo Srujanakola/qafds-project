@@ -45,15 +45,13 @@ logger.add("logs/qafds_{time}.log", rotation="1 day", retention="7 days", backtr
 TESTING = os.getenv("TESTING", "0") == "1"
 limiter = Limiter(key_func=get_remote_address) if not TESTING else None
 
-# ── CORS — allows React frontend to call this backend ──────────────────────
+# ── CORS — allows frontend (Vercel + local) to call backend ────────────────
 app.add_middleware(
     CORSMiddleware,
-    # permit default CRA port and alternates 3001/3002/3003 (auto‑chosen when ports are busy)
     allow_origins=[
-        "http://localhost:3000", "http://127.0.0.1:3000",
-        "http://localhost:3001", "http://127.0.0.1:3001",
-        "http://localhost:3002", "http://127.0.0.1:3002",
-        "http://localhost:3003", "http://127.0.0.1:3003",
+        "https://qafds-project.vercel.app",  # your deployed frontend
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
