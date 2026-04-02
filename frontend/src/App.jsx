@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const API = "http://localhost:8000";
+const API = "https://qafds-project.onrender.com";
 
 const TEST_CARDS = [
   { label: "✅ Normal Payment",    number: "4242424242424242", exp_month: 12, exp_year: 2026, cvc: "123", color: "#00f5d4" },
